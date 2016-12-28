@@ -1,0 +1,46 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<conio.h>
+
+int main()
+{
+	int **matrix;
+	int i, j;
+	printf_s("Rows:");
+	scanf_s("%d", &i);
+	printf_s("Columns:");
+	scanf_s("%d", &j);
+	matrix = (int **)malloc(i * sizeof(int*));
+	for (int n = 0; n < i; n++)
+		matrix[n] = (int*)malloc(j * sizeof(int));
+	for (int n = 0; n < i; n++)
+	{
+		for (int k = 0; k < j; k++)
+			matrix[n][k] = rand() % 100;
+	}
+	printf_s("Matrix is:\n");
+	for (int n = 0; n < i; n++)
+	{
+		for (int k = 0; k < j; k++)
+			printf_s("%4d ", matrix[n][k]);
+		printf("\n");
+	}
+	for (int n = 0; n < i; n++)
+		for (int k = n+1; k < j; k++)
+		{
+			if (n != k)
+			{
+				double buf = matrix[n][k];
+				matrix[n][k] = matrix[k][n];
+				matrix[k][n] = buf;
+			}
+		}
+	printf_s("Transposed matrix: \n");
+	for (int n = 0; n < i; n++)
+	{
+		for (int k = 0; k < j; k++)
+			printf_s("%4d ", Matrix[n][k]);
+		printf("\n");
+	}
+	_getch();
+}
